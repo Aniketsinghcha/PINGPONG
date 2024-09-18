@@ -1,0 +1,255 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #f0f0f0; /* Light background to represent a gym or sports hall */
+    background-image: linear-gradient(135deg, #ffffff 25%, transparent 25%, transparent 75%, #ffffff 75%, #ffffff), 
+                      linear-gradient(225deg, #ffffff 25%, transparent 25%, transparent 75%, #ffffff 75%, #ffffff);
+    background-size: 20px 20px; /* Grid pattern for a court-like feel */
+    background-position: 0 0, 10px 10px; /* Offset for staggered grid */
+    animation: gradient 5s ease infinite; /* Optional: animated background for subtle movement */
+    display: flex; /* Centering elements */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    height: 100vh; /* Full viewport height */
+    position: relative; /* For absolute positioning of other elements */
+    overflow: hidden; /* Hide overflow to keep elements contained */
+    font-family:  Helvetica, sans-serif;
+}
+
+/* Optional: Add a border around the viewport */
+body::before {
+    content: '';
+    position: absolute;
+    top: 20px; 
+    left: 20px;
+    right: 20px;
+    bottom: 20px;
+    border: 10px solid #007acc; /* Border color similar to a ping pong table */
+    border-radius: 15px; /* Rounded corners */
+    pointer-events: none; /* Prevent interaction with the border */
+}
+
+
+@keyframes gradient {
+    0% {
+        background: linear-gradient(270deg, #000, #333);
+    }
+    50% {
+        background: linear-gradient(270deg, #333, #000);
+    }
+    100% {
+        background: linear-gradient(270deg, #000, #333);
+    }
+}
+
+.court {
+    width: 600px;
+    height: 600px;
+    background-color: #1e7c9b;
+    position: relative;
+    border: 5px solid #ffffff;
+    overflow: hidden;
+    box-sizing: content-box;
+}
+
+.net {
+    width: 10px;
+    height: 100%;
+    background-color: #fff;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.ball {
+    width: 20px;
+    height: 20px;
+    background-color: rgb(216, 21, 21);
+    border-radius: 50%;
+    position: absolute;
+     
+    transform: translate(-50%, -50%);
+    
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+#left-paddle {
+    position: absolute;
+    height: 60px;
+    width: 20px;
+    top: 300px;
+    /* Adjusted to align paddles */
+    background-color: rgb(19, 195, 195);
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+   
+}
+
+#right-paddle {
+    position: absolute;
+    height: 60px;
+    width: 20px;
+    top: 300px;
+    left: 580px; /* Adjusted to align paddles */
+    background-color: red;
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    
+}
+.start-button {
+    position: absolute;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #4CAF50; /* Green */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    left:900px;
+    top:500px
+}
+
+.start-button:hover {
+    background-color: #45a049; /* Darker green on hover */
+}
+.scorecard {
+    position: absolute;
+    left:60px;
+    top:0px;
+    width: 200px;
+    height: 200px;
+    background: linear-gradient(135deg, #007acc, #00bfff);
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    animation: fadeIn 1s ease forwards; /* Fade-in animation */
+}
+
+.score {
+    font-size: 48px;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    animation: bounce 1s infinite alternate; /* Bouncing effect */
+}
+
+.labels {
+    margin-top: 10px;
+    font-size: 18px;
+    color: white;
+    text-align: center;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes bounce {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(-10px);
+    }
+}
+.instruction-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    color: white;
+    text-align: center;
+    animation: fadeIn 1s;
+}
+
+.instruction-text {
+    margin-bottom: 20px;
+    animation: bounce 1s infinite alternate;
+}
+
+.paddle {
+    position: absolute;
+    width: 20px;
+    height: 100px;
+    background: #00bfff;
+    border-radius: 10px;
+    animation: paddleSwing 1s ease-in-out infinite alternate;
+}
+
+.player-one-paddle {
+    left: 50px;
+    top: 200px;
+}
+
+.player-two-paddle {
+    right: 50px;
+    top: 200px;
+}
+
+.balls {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: #ff4500;
+    border-radius: 50%;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 250px;
+    animation: ballBounce 1s infinite alternate;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes bounce {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-10px); }
+}
+
+@keyframes paddleSwing {
+    0% { transform: rotate(0); }
+    100% { transform: rotate(10deg); }
+}
+
+@keyframes ballBounce {
+    0% { transform: translate(-50%, 0); }
+    100% { transform: translate(-50%, -10px); }
+}
+ 
+ 
+
+
+
